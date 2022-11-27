@@ -1,0 +1,85 @@
+pipeline {
+    agent {
+        node {
+            label 'slave1'
+        }
+    }
+
+    parameters {
+        gitParameter(branch: '', 
+                     branchFilter: 'origin/(.*)', 
+                     defaultValue: 'main', 
+                     description: '', 
+                     name: 'BRANCH', 
+                     quickFilterEnabled: true, 
+                     selectedValue: 'TOP', 
+                     sortMode: 'DESCENDING', 
+                     tagFilter: '*', 
+                     type: 'PT_BRANCH', 
+                     useRepository: 'git@github.com:myroslavlevchyk/4pet.git')
+        imageTag(name: 'myroslavlevchyk/petclinic', 
+                 image: 'myroslavlevchyk/petclinic')    
+    }
+
+    stages {
+        stage('Delete workspace before build starts') {
+            steps {
+                echo 'Deleting workspace'
+                deleteDir()
+            }
+        }
+        stage('Env print') {
+            steps {
+                sh '''
+                    echo $BRANCH
+                '''
+            }
+        }
+
+        stage('Checkout') {
+            steps{
+                    git branch: "${params.BRANCH}", credentialsId: 'ssh-github', url: 'git@github.com:myroslavlevchyk/4pet.git'      
+                }
+        }                
+        
+        stage(' SSH connect, Pull and Run Docker container') {
+            steps {                
+                sh 'ssh -t myroslav@$env "docker pull $DOCKER_IMAGE && docker run -d -p 8080:8080 --name petclinic $DOCKER_IMAGE"'                
+            }
+        }        
+
+        stage(' Curl') {
+            steps {
+                               
+                sh 'sleep 60 && curl -f -LI $env:8080'
+            }
+        } 
+
+
+        // stage('Test') {
+        //     steps {
+        //         echo "$DOCKER_IMAGE" // will print selected image name with tag (eg. jenkins/jenkins:lts-jdk11)
+        //         echo "$DOCKER_IMAGE_TAG" // will print selected tag value (eg. lts-jdk11)
+        //         echo "$DOCKER_IMAGE_IMAGE" // will print selected image name value (eg. jenkins/jenkins)
+        //     }
+        // }    
+    }
+}
+
+
+
+//     parameters {
+//         imageTag(name: 'DOCKER_IMAGE', image: 'myroslavlevchyk/petclinic')        
+//         docker rm -f petclinic && 
+//     }
+
+//     stages {
+//         stage('Test') {
+//             steps {
+//                 echo "$DOCKER_IMAGE" // will print selected image name with tag (eg. jenkins/jenkins:lts-jdk11)
+//                 echo "$DOCKER_IMAGE_TAG" // will print selected tag value (eg. lts-jdk11)
+//                 echo "$DOCKER_IMAGE_IMAGE" // will print selected image name value (eg. jenkins/jenkins)
+//             }
+//         }
+//     }
+// }
