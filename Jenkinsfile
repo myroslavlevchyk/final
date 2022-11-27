@@ -25,7 +25,7 @@ pipeline {
     }
 
     environment {
-        PATH = "$PATH:/home/myroslav/workspace/multibranch-test1_feature"
+        PATH = "$PATH:/home/myroslav/workspace/multibranch-final_feature"
         DOCKERHUB_CREDENTIALS = credentials('myroslav-dockerhub')
     }
 
