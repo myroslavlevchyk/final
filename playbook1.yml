@@ -13,7 +13,7 @@
           3036
    tasks:
      - name: Clear dir
-       command: sudo rm -rf /home/myroslav/final_task/final_pet/
+       command: rm -rf /home/myroslav/final_task/final_pet/
 
      - name: Clone Git Repo
        git:
