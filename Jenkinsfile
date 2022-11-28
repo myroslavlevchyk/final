@@ -4,7 +4,7 @@ pipeline{
         buildDiscarder(logRotator(numToKeepStr: '15'))
     }
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('myroslavlevchyk-dockerhub')
+        DOCKERHUB_CREDENTIALS = credentials('myroslav-dockerhub')
     }
     stages{
         stage('VM1: <Ansiblefile#1>'){
