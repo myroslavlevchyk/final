@@ -1,0 +1,29 @@
+---
+ - name: start services
+   hosts: localhost
+
+   vars:
+       DOCKER_USERNAME: myroslavlevchyk
+       DOCKER_PASSWORD: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          61346330623164323330313236313864666630323432383434636530633334633930333338356336
+          3838393232343436373965633763323935313130633730660a306434393630386665366539363734
+          31663936653365653637633937613162313139353866323539313832393238303464396563636463
+          6365636439303363350a356162326661626439376333326566333136626635346135633336306634
+          3036
+   tasks:
+     - name: Clear dir
+       command: sudo rm -rf /home/myroslav/final_task/final_pet/
+
+     - name: Clone Git Repo
+       git:
+         repo: https://github.com/myroslavlevchyk/4pet.git
+         dest: /home/myroslav/final_task/final_pet
+         force: yes
+         clone: yes
+         update: yes
+         single_branch: yes
+         version: feature
+
+     - name: Hadolint
+       command: hadolint /home/myroslav/final_task/final/Dockerfile

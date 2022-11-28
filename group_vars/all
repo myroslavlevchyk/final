@@ -1,0 +1,6 @@
+db_ip: 192.168.0.108
+db_user: dbuser
+db_pass: p1ssw0rd
+db_name: php_mysql_crud
+ansible_sudo_pass: Myroslav
+mysql_root_password: password
