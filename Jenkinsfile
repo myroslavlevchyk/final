@@ -117,7 +117,7 @@ pipeline {
 
         stage(' Push') {
             steps {                
-//                sh 'docker push myroslavlevchyk/petclinic:' + buildNumber + ''
+                sh 'docker push myroslavlevchyk/petclinic:' + buildNumber + ''
                 sh 'docker push myroslavlevchyk/petclinic:latest'
             }
         }
