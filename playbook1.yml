@@ -22,6 +22,7 @@
          force: yes
          clone: yes
          update: yes
+         mode: "0555"
         #  single_branch: yes
         #  version: feature
 
