@@ -22,8 +22,8 @@
          force: yes
          clone: yes
          update: yes
-         single_branch: yes
-         version: feature
+        #  single_branch: yes
+        #  version: feature
 
     #  - name: Hadolint
     #    command: hadolint /home/myroslav/final_task/final/Dockerfile
