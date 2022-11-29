@@ -42,9 +42,11 @@
      - name: Hadolint
        command: hadolint /home/myroslav/final_task/final/Dockerfile
 
-     - name: MVNW Package
-       command: chdir=/home/myroslav/final_task/final_pet ./mvnw package
-       
+    #  - name: MVNW Package
+    #    command: chdir=/home/myroslav/final_task/final_pet ./mvnw package  
+    
+#     - name: Build_number
+     - debug: msg="{{ lookup('env','BUILD_NUMBER') }}"           
 
      - name: Build Docker container image
        command: chdir=/home/myroslav/final_task/final_pet docker build -t myroslavlevchyk/petclinic:latest -f /home/myroslav/final_task/final/Dockerfile .        
@@ -54,13 +56,7 @@
      - name: Log into DockerHub
        community.docker.docker_login:
          username: "{{ DOCKER_USERNAME }}"
-         password: !vault |
-          $ANSIBLE_VAULT;1.1;AES256
-          61346330623164323330313236313864666630323432383434636530633334633930333338356336
-          3838393232343436373965633763323935313130633730660a306434393630386665366539363734
-          31663936653365653637633937613162313139353866323539313832393238303464396563636463
-          6365636439303363350a356162326661626439376333326566333136626635346135633336306634
-          3036
+         password: {{ DOCKER_PASSWORD }}
 
      - name: PUSH Docker container image
        command: docker push myroslavlevchyk/petclinic:latest
