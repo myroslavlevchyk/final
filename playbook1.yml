@@ -11,13 +11,25 @@
           31663936653365653637633937613162313139353866323539313832393238303464396563636463
           6365636439303363350a356162326661626439376333326566333136626635346135633336306634
           3036
+  #  tasks:
+  #  - name: Clone a github repository
+  #    git:
+  #      repo: https://github.com/myroslavlevchyk/4pet.git
+  #      dest: /home/myroslav/final_task/final_pet/
+  #      clone: yes
+  #      update: yes
+
    tasks:
+     - name: Delete content & directory
+       file:
+         state: absent
+         path: /home/myroslav/final_task/final_pet/
     #  - name: Clear dir
     #    command: rm -rf /home/myroslav/final_task/final_pet/
 
      - name: Clone Git Repo
 #       git:
-         ansible.builtin.git:
+       ansible.builtin.git:
          repo: https://github.com/myroslavlevchyk/4pet.git
          dest: /home/myroslav/final_task/final_pet
         #  force: yes
@@ -27,5 +39,14 @@
          single_branch: yes
          version: feature
 
-    #  - name: Hadolint
-    #    command: hadolint /home/myroslav/final_task/final/Dockerfile
+     - name: Hadolint
+       command: hadolint /home/myroslav/final_task/final/Dockerfile
+
+     - name: Build Docker container image
+       command: chdir=/home/myroslav/final_task/final_pet docker build -t myroslavlevchyk/petclinic:latest -f /home/myroslav/final_task/final/Dockerfile .        
+     
+    #  - name: ECHO Docker container image
+    #    command: docker login -u={{DOCKER_USERNAME}} -p={{DOCKER_PASSWORD}}
+
+    #  - name: PUSH Docker container image
+    #    command: docker push myroslavlevchyk/petclinic:latest
