@@ -43,7 +43,7 @@
        command: hadolint /home/myroslav/final_task/final/Dockerfile
 
      - name: mvnw package
-       command: ./mvnw package
+       command: chdir=/home/myroslav/final_task/final_pet mvnw package
        
 
      - name: Build Docker container image
