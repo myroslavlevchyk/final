@@ -11,6 +11,7 @@
           31663936653365653637633937613162313139353866323539313832393238303464396563636463
           6365636439303363350a356162326661626439376333326566333136626635346135633336306634
           3036
+       BUILD_NUMBER: "{{ lookup('env','BUILD_NUMBER') }}"   
   #  tasks:
   #  - name: Clone a github repository
   #    git:
@@ -42,15 +43,18 @@
      - name: Hadolint
        command: hadolint /home/myroslav/final_task/final/Dockerfile
 
-    #  - name: MVNW Package
-    #    command: chdir=/home/myroslav/final_task/final_pet ./mvnw package  
+     - name: MVNW Package
+       command: chdir=/home/myroslav/final_task/final_pet ./mvnw package  
     
 #     - name: Build_number
      - debug: msg="{{ lookup('env','BUILD_NUMBER') }}"           
 
      - name: Build Docker container image
        command: chdir=/home/myroslav/final_task/final_pet docker build -t myroslavlevchyk/petclinic:latest -f /home/myroslav/final_task/final/Dockerfile .        
-     
+
+     - name: Tag Docker container image
+       command: chdir=/home/myroslav/final_task/final_pet docker build -t myroslavlevchyk/petclinic:"{{ BUILD_NAMBER }}" -f /home/myroslav/final_task/final/Dockerfile .        
+
     #  - name: ECHO Docker container image
     #    command: docker login -u={{DOCKER_USERNAME}} -p={{DOCKER_PASSWORD}}
      - name: Log into DockerHub
@@ -60,3 +64,4 @@
 
      - name: PUSH Docker container image
        command: docker push myroslavlevchyk/petclinic:latest
+
