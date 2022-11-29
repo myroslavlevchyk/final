@@ -49,8 +49,8 @@
      - name: Build Docker container image
        command: chdir=/home/myroslav/final_task/final_pet docker build -t myroslavlevchyk/petclinic:latest -f /home/myroslav/final_task/final/Dockerfile .        
      
-    #  - name: ECHO Docker container image
-    #    command: docker login -u={{DOCKER_USERNAME}} -p={{DOCKER_PASSWORD}}
+     - name: ECHO Docker container image
+       command: docker login -u={{DOCKER_USERNAME}} -p={{DOCKER_PASSWORD}}
 
-    #  - name: PUSH Docker container image
-    #    command: docker push myroslavlevchyk/petclinic:latest
+     - name: PUSH Docker container image
+       command: docker push myroslavlevchyk/petclinic:latest
