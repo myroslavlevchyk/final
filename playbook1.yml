@@ -51,6 +51,10 @@
      
     #  - name: ECHO Docker container image
     #    command: docker login -u={{DOCKER_USERNAME}} -p={{DOCKER_PASSWORD}}
+     - name: Log into DockerHub
+       community.docker.docker_login:
+         username: "{{DOCKER_USERNAME}}"
+         password: "{{DOCKER_PASSWORD}}"
 
      - name: PUSH Docker container image
        command: docker push myroslavlevchyk/petclinic:latest
