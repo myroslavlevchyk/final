@@ -42,6 +42,10 @@
      - name: Hadolint
        command: hadolint /home/myroslav/final_task/final/Dockerfile
 
+     - name: mvnw package
+       command: ./mvnw package
+       
+
      - name: Build Docker container image
        command: chdir=/home/myroslav/final_task/final_pet docker build -t myroslavlevchyk/petclinic:latest -f /home/myroslav/final_task/final/Dockerfile .        
      
