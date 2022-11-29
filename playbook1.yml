@@ -56,7 +56,7 @@
      - name: Log into DockerHub
        community.docker.docker_login:
          username: "{{ DOCKER_USERNAME }}"
-         password: "{{ DOCKER_PASSWORD }}""
+         password: "{{ DOCKER_PASSWORD }}"
 
      - name: PUSH Docker container image
        command: docker push myroslavlevchyk/petclinic:latest
