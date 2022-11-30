@@ -11,7 +11,23 @@
           31663936653365653637633937613162313139353866323539313832393238303464396563636463
           6365636439303363350a356162326661626439376333326566333136626635346135633336306634
           3036
-       BUILD_NUMBER: {{ lookup('env','BUILD_NUMBER') }}   
+       SONAR_USER: admin       
+       SONAR_PASSWORD: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          62363636303564383530646139623064653736343565623238313236323331633330396662363339
+          3666316535303534383735653863363634356134626331390a633436646533663434616531373138
+          34633962666666613633663137306565616266363762653964653734383633636230653065323365
+          6438633032303638610a313631366666666530623134343066353531393439343865653262613637
+          3332
+       SONAR_TOKEN: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          37333036623334613362656636613130383830396439383132383761383030646133383462393865
+          3934353730343664633631343230353362633263373136620a663138366338643935666638643538
+          32363933396532383531636137326631383436343561626262386631303533376334396166613632
+          6136323338613361390a303335393933303834306133383030373033376662353534346230643239
+          64333330323738626338306231663966343032333935623364306365393731353538393535333662
+          6234633562336666613737376230343464343464313865386564
+       BUILD_NUMBER: "{{ lookup('env','BUILD_NUMBER') }}"   
   #  tasks:
   #  - name: Clone a github repository
   #    git:
@@ -43,8 +59,11 @@
      - name: Hadolint
        command: hadolint /home/myroslav/final_task/final/Dockerfile
 
-     - name: MVNW Package
+     - name: MVN Package
        command: chdir=/home/myroslav/final_task/final_pet ./mvnw package  
+
+     - name: SonarQube
+       command: chdir=/home/myroslav/final_task/final_pet ./mvnw -e clean verify sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login="{{ SONAR_USER }}" -Dsonar.password="{{ SONAR_PASSWORD }}" 
     
 #     - name: Build_number
      - debug: msg="{{ lookup('env','BUILD_NUMBER') }}"           
@@ -52,7 +71,7 @@
      - name: Build Docker container image
        command: chdir=/home/myroslav/final_task/final_pet docker build -t myroslavlevchyk/petclinic:latest -f /home/myroslav/final_task/final/Dockerfile .        
 
-     - name: Tag Docker container image
+     - name: Tag ("{{ BUILD_NUMBER }}") Docker container image
        command: chdir=/home/myroslav/final_task/final_pet docker build -t myroslavlevchyk/petclinic:"{{ BUILD_NUMBER }}" -f /home/myroslav/final_task/final/Dockerfile .        
 
     #  - name: ECHO Docker container image
@@ -62,6 +81,12 @@
          username: "{{ DOCKER_USERNAME }}"
          password: "{{ DOCKER_PASSWORD }}"
 
-     - name: PUSH Docker container image
+     - name: PUSH Docker container image (latest)
        command: docker push myroslavlevchyk/petclinic:latest
 
+     - name: PUSH Docker container image ("{{ BUILD_NUMBER }}")
+       command: docker push myroslavlevchyk/petclinic:"{{ BUILD_NUMBER }}"
+
+     - name: Log out of DockerHub
+       community.docker.docker_login:
+         state: absent       
