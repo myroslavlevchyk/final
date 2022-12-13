@@ -6,6 +6,7 @@ pipeline {
     }
 
     parameters {
+        choice(choices: 'US-EAST-1\nUS-WEST-2', description: 'What AWS region?', name: 'choiceExample')
         imageTag(name: 'myroslavlevchyk/petclinic', 
                  image: 'myroslavlevchyk/petclinic')    
     }
@@ -17,43 +18,43 @@ pipeline {
                 deleteDir()
             }
         }
-        stage('Env print BRANCH') {
+        stage('Env print choiceExample') {
             steps {
                 sh '''
-                    echo $BRANCH
+                    echo "choiceExample: ${params.choiceExample}"
                 '''
             }
         }
 
-        stage('Env print DOCKER image') {
-            steps {
-                sh '''
-                    echo $DOCKER_IMAGE
-                '''
-            }
-        }        
+        // stage('Env print DOCKER image') {
+        //     steps {
+        //         sh '''
+        //             echo $DOCKER_IMAGE
+        //         '''
+        //     }
+        // }        
 
-        stage('Env print BRANCH2') {
-            steps {
-                sh '''
-                    echo "${params.BRANCH}"
-                '''
-            }
-        }
+        // stage('Env print BRANCH2') {
+        //     steps {
+        //         sh '''
+        //             echo "${params.BRANCH}"
+        //         '''
+        //     }
+        // }
 
-        stage('Env print DOCKER image') {
-            steps {
-                sh '''
-                    echo "${params.DOCKER_IMAGE}"
-                '''
-            }
-        }
+        // stage('Env print DOCKER image') {
+        //     steps {
+        //         sh '''
+        //             echo "${params.DOCKER_IMAGE}"
+        //         '''
+        //     }
+        // }
 
-        stage('Checkout') {
-            steps{
-                    git branch: "${params.BRANCH}", credentialsId: 'ssh-github', url: 'git@github.com:myroslavlevchyk/4pet.git'      
-                }
-        }            
+        // stage('Checkout') {
+        //     steps{
+        //             git branch: "${params.BRANCH}", credentialsId: 'ssh-github', url: 'git@github.com:myroslavlevchyk/4pet.git'      
+        //         }
+        // }            
    
     }
 }
