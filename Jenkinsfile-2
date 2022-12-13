@@ -20,9 +20,8 @@ pipeline {
 
         stage('Env PWD') {
             steps {
-                sh '''
-                    echo "pwd"
-                '''
+                sh 'pwd'
+                sh 'ls -la'
             }
         }
 
