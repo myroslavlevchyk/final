@@ -6,8 +6,7 @@ pipeline {
     }
 
     environment {     
-        /home/myroslav/final_task/final/Jenkinsfile-2
-        MY_KUBECONFIG = credentials('my-kubeconfig')
+        /home/myroslav/final_task/final/Jenkinsfile-2        
     }
 
     parameters {
