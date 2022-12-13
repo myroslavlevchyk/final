@@ -5,6 +5,11 @@ pipeline {
         }
     }
 
+    environment {
+        PATH="/home/myroslav/final_task/final:${env.SCM_HOME}:$PATH"
+        SCM_HOME="${env.SCM_HOME}"
+   }    
+
     parameters {
         choice(choices: '\n\nDeploy\nUpdate\nDelete', description: 'Please select a Service', name: 'choiceExample')
         imageTag(name: 'myroslavlevchyk/petclinic', description: 'Please select a DOCKER IMAGE (default = latest)', image: 'myroslavlevchyk/petclinic', defaultTag: 'latest')    
@@ -22,6 +27,8 @@ pipeline {
             steps {
                 sh 'pwd'
                 sh 'ls -la'
+                echo "PATH=$PATH" 
+                echo "SCM_HOME=$SCM_HOME"
             }
         }
 
