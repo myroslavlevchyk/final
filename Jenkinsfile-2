@@ -17,17 +17,27 @@ pipeline {
                 deleteDir()
             }
         }
-        stage('Env print Branch') {
+        stage('Env print BRANCH') {
             steps {
                 sh '''
                     echo $BRANCH
                 '''
             }
-        stage('Env print Docker image') {
+        }
+
+        stage('Env print DOCKER image') {
             steps {
                 sh '''
                     echo $DOCKER_IMAGE
                 '''
             }
+        }        
 
-        }
+        stage('Checkout') {
+            steps{
+                    git branch: "${params.BRANCH}", credentialsId: 'ssh-github', url: 'git@github.com:myroslavlevchyk/4pet.git'      
+                }
+        }            
+   
+    }
+}
