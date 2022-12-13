@@ -6,7 +6,7 @@ pipeline {
     }
 
     parameters {
-        choice(choices: 'US-EAST-1\nUS-WEST-2', description: 'What AWS region?', name: 'choiceExample')
+        choice(choices: '\n\nDeploy\nUpdate\nDelete', description: 'Please select a Service', name: 'choiceExample')
         imageTag(name: 'myroslavlevchyk/petclinic', 
                  image: 'myroslavlevchyk/petclinic')    
     }
