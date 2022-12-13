@@ -6,8 +6,7 @@ pipeline {
     }
 
     environment {
-        PATH="/home/myroslav/final_task/final:${env.SCM_HOME}:$PATH"
-        SCM_HOME="${env.SCM_HOME}"
+        PATH="/home/myroslav/final_task/final"        
    }    
 
     parameters {
@@ -28,7 +27,6 @@ pipeline {
                 sh 'pwd'
                 sh 'ls -la'
                 echo "PATH=$PATH" 
-                echo "SCM_HOME=$SCM_HOME"
             }
         }
 
