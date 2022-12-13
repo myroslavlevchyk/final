@@ -32,6 +32,15 @@ pipeline {
             }
         }
 
+
+        stage('Env QQQ') {
+            steps {
+                sh 'cd /home/myroslav/final_task/final'
+                echo "choiceExample: ${params.choiceExample}"                
+            }
+        }
+
+
         stage('Env print choiceExample') {
             steps {
                 sh '''
