@@ -33,6 +33,22 @@ pipeline {
             }
         }        
 
+        stage('Env print BRANCH2') {
+            steps {
+                sh '''
+                    echo "${params.BRANCH}"
+                '''
+            }
+        }
+
+        stage('Env print DOCKER image') {
+            steps {
+                sh '''
+                    echo "${params.DOCKER_IMAGE}"
+                '''
+            }
+        }
+
         stage('Checkout') {
             steps{
                     git branch: "${params.BRANCH}", credentialsId: 'ssh-github', url: 'git@github.com:myroslavlevchyk/4pet.git'      
