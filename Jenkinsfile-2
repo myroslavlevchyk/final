@@ -17,6 +17,15 @@ pipeline {
                 deleteDir()
             }
         }
+
+        stage('Env PWD') {
+            steps {
+                sh '''
+                    echo "pwd"
+                '''
+            }
+        }
+
         stage('Env print choiceExample') {
             steps {
                 sh '''
