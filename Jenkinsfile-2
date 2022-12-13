@@ -1,0 +1,33 @@
+pipeline {
+    agent {
+        node {
+            label 'slave1'
+        }
+    }
+
+    parameters {
+        imageTag(name: 'myroslavlevchyk/petclinic', 
+                 image: 'myroslavlevchyk/petclinic')    
+    }
+
+    stages {
+        stage('Delete workspace before build starts') {
+            steps {
+                echo 'Deleting workspace'
+                deleteDir()
+            }
+        }
+        stage('Env print Branch') {
+            steps {
+                sh '''
+                    echo $BRANCH
+                '''
+            }
+        stage('Env print Docker image') {
+            steps {
+                sh '''
+                    echo $DOCKER_IMAGE
+                '''
+            }
+
+        }
