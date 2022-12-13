@@ -6,7 +6,7 @@ pipeline {
     }
 
     parameters {
-        choice(choices: '\n\nDeploy\nUpdate\nDelete', description: 'Please select a Service', name: 'choiceExample')
+        choice(choices: '\n\nDeploy\nUpdate\nDelete', description: 'Please select a Services', name: 'choiceExample')
         imageTag(name: 'myroslavlevchyk/petclinic', 
                  image: 'myroslavlevchyk/petclinic')    
     }
