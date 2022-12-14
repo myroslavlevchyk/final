@@ -7,17 +7,17 @@
   #      DOCKER_IMAGE: "{{ 'params.choiceServise' ) }}"
 
    tasks:
-     - name: Delete content in directory
-       file:
-         state: absent
-         path: /home/myroslav/final_task/final2/
+    #  - name: Delete content in directory
+    #    file:
+    #      state: absent
+    #      path: /home/myroslav/final_task/final2/
 
-     - name: Clone Git Repo
-       ansible.builtin.git:
-         repo: https://github.com/myroslavlevchyk/final.git
-         dest: /home/myroslav/final_task/final2
-         single_branch: yes
-         version: main   
+    #  - name: Clone Git Repo
+    #    ansible.builtin.git:
+    #      repo: https://github.com/myroslavlevchyk/final.git
+    #      dest: /home/myroslav/final_task/final2
+    #      single_branch: yes
+    #      version: main   
     #  - name: Docker Image = ("{{ DOCKER_IMAGE }}") Docker container image
     #    command: echo "{{ DOCKER_IMAGE }}"
 

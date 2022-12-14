@@ -60,7 +60,7 @@ pipeline {
         stage('VM1: <Ansiblefile#2>'){
             steps{
                 sh '''                 
-                cd /home/myroslav/final_task/final2/
+                cd /home/myroslav/final_task/final/
                 pwd
                 ansible-playbook playbook3.yml --extra-vars "DOCKER_IMAGE=petclinic"
                 pwd
@@ -71,7 +71,7 @@ pipeline {
 
         stage('Env FINAL2') {
             steps {
-                sh 'cd /home/myroslav/final_task/final2'
+                sh 'cd /home/myroslav/final_task/final'
                 echo "choiceServise: ${params.choiceServise}"                
                 echo "petclinic: ${params.petclinic}"                
             }
