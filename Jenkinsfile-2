@@ -51,7 +51,7 @@ pipeline {
         stage('Env QQQ') {
             steps {
                 sh 'cd /home/myroslav/final_task/final'
-                echo "choiceExample: ${params.choiceServise}"                
+                echo "choiceServise: ${params.choiceServise}"                
                 echo "petclinic: ${params.petclinic}"                
             }
         }
@@ -70,7 +70,7 @@ pipeline {
         stage('Env WWW') {
             steps {
 //                sh 'cd /home/myroslav/final_task/final2'
-                echo "choiceExample: ${params.choiceServise}"                
+                echo "choiceServise: ${params.choiceServise}"                
                 echo "petclinic: ${params.petclinic}"                
             }
         }
