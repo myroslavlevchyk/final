@@ -2,6 +2,7 @@
  - name: start services
    hosts: localhost
 
+   tasks:
      - name: Kubectl apply
        shell: chdir=~/final_task/final kubectl apply -f pod-my-cl-1.yaml
 
