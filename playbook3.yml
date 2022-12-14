@@ -2,9 +2,26 @@
  - name: start services
    hosts: localhost
 
-   tasks:
-     - name: Terraform Plan the destruction
-       shell: chdir=~/final_task/final/k8s terraform plan -destroy -out destroyplan
+     - name: Kubectl apply
+       shell: chdir=~/final_task/final kubectl apply -f pod-my-cl-1.yaml
 
-     - name: Terraform Destroy
-       shell: chdir=~/final_task/final/k8s terraform apply destroyplan
+     - name: Kubectl expose deployment petclinic --type=LoadBalancer --port=8080 --target-port=8080
+       shell: chdir=~/final_task/final kubectl expose deployment petclinic --type=LoadBalancer --port=8080 --target-port=8080
+
+     - name: Sleep 60
+       shell: sleep 60
+
+     - name: Kubectl get svc
+       shell: kubectl get svc
+       register: playbook_path_output
+     - debug: var=playbook_path_output.stdout
+
+     - name: Print IP
+       shell: echo "IP " && kubectl get svc | awk '{print $4}'| tail -n1
+       register: playbook_path_output
+     - debug: var=playbook_path_output.stdout
+
+     - name: Print Port
+       shell: echo "Port " && kubectl get svc | awk '{print $5}'| tail -n1 | cut -d ":" -f 1
+       register: playbook_path_output
+     - debug: var=playbook_path_output.stdout

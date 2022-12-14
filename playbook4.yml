@@ -1,0 +1,10 @@
+---
+ - name: start services
+   hosts: localhost
+
+   tasks:
+     - name: Terraform Plan the destruction
+       shell: chdir=~/final_task/final/k8s terraform plan -destroy -out destroyplan
+
+     - name: Terraform Destroy
+       shell: chdir=~/final_task/final/k8s terraform apply destroyplan

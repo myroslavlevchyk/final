@@ -94,21 +94,27 @@ pipeline {
                         pwd
                         ansible-playbook playbook2.yml 
                         pwd
-                        echo "PRINT Ansible#2>>>"
+                        echo "PRINT Ansible#2>>> DEPLOY"
                         '''   
                         }
                     if (params.choiceServise == 'Update environment') 
-                        {
-                        echo 'Hello from Update'
-                        }
-                    if (params.choiceServise == 'Delete environment') 
                         {
                         sh '''                 
                         cd /home/myroslav/final_task/final/
                         pwd
                         ansible-playbook playbook3.yml 
                         pwd
-                        echo "PRINT Ansible#2>>>"
+                        echo "PRINT Ansible#3>>> UPDATE"
+                        ''' 
+                        }
+                    if (params.choiceServise == 'Delete environment') 
+                        {
+                        sh '''                 
+                        cd /home/myroslav/final_task/final/
+                        pwd
+                        ansible-playbook playbook4.yml 
+                        pwd
+                        echo "PRINT Ansible#4>>> DELETE"
                         '''   
                         }
                     if (params.choiceServise == '')
