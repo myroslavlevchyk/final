@@ -1,0 +1,17 @@
+---
+ - name: start services
+   hosts: localhost
+
+
+   tasks:
+     - name: Delete content in directory
+       file:
+         state: absent
+         path: /home/myroslav/final_task/final
+
+     - name: Clone Git Repo
+       ansible.builtin.git:
+         repo: https://github.com/myroslavlevchyk/final.git
+         dest: /home/myroslav/final_task/final
+         single_branch: yes
+         version: main

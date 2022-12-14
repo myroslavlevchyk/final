@@ -1,5 +1,5 @@
-String gitCredentials = "github-passwd"
-String repoUrl = "https://github.com/myroslavlevchyk/final.git"
+// String gitCredentials = "github-passwd"
+// String repoUrl = "https://github.com/myroslavlevchyk/final.git"
 
 pipeline {
     agent {
@@ -8,9 +8,9 @@ pipeline {
         }
     }
 
-    environment {
-        PATH = "$PATH:/home/myroslav/final_task/final"        
-   }    
+//     environment {
+//         PATH = "$PATH:/home/myroslav/final_task/final"        
+//    }    
 
     parameters {
         choice(choices: '\n\nDeploy\nUpdate\nDelete', description: 'Please select a Service', name: 'choiceExample')
@@ -18,34 +18,34 @@ pipeline {
     }
 
     stages {
-        stage('Delete workspace before build starts') {
-            steps {
-                echo 'Deleting workspace'
-                deleteDir()
-            }
-        }
+        // stage('Delete workspace before build starts') {
+        //     steps {
+        //         echo 'Deleting workspace'
+        //         deleteDir()
+        //     }
+        // }
 
-        stage('Checkout') {
-                steps {
-                checkout([$class: 'GitSCM', 
-                    branches: [[name: '*/main']],
-                    extensions: [
-                        [$class: 'SparseCheckoutPaths', 
-                        sparseCheckoutPaths:[[$class:'SparseCheckoutPath', path:'/home/myroslav/final_task/final']]]
-                        ],
-                    userRemoteConfigs: [[url: 'https://github.com/myroslavlevchyk/final.git']]])
-                sh "pwd" 
-                sh "ls -ltr"
-            }
-        }
+        // stage('Checkout') {
+        //         steps {
+        //         checkout([$class: 'GitSCM', 
+        //             branches: [[name: '*/main']],
+        //             extensions: [
+        //                 [$class: 'SparseCheckoutPaths', 
+        //                 sparseCheckoutPaths:[[$class:'SparseCheckoutPath', path:'/home/myroslav/final_task/final']]]
+        //                 ],
+        //             userRemoteConfigs: [[url: 'https://github.com/myroslavlevchyk/final.git']]])
+        //         sh "pwd" 
+        //         sh "ls -ltr"
+        //     }
+        // }
 
-        stage('Env PWD') {
-            steps {
-                sh 'pwd'
-                sh 'ls -la'
-                echo "PATH=$PATH" 
-            }
-        }
+        // stage('Env PWD') {
+        //     steps {
+        //         sh 'pwd'
+        //         sh 'ls -la'
+        //         echo "PATH=$PATH" 
+        //     }
+        // }
 
 
         stage('Env QQQ') {
@@ -56,6 +56,16 @@ pipeline {
             }
         }
 
+
+        stage('VM1: <Ansiblefile#2>'){
+            steps{
+                sh '''                 
+                cd /home/myroslav/final_task/final/
+                ansible-playbook playbook2.yml
+                echo "PRINT Ansible#2>>>"
+                '''             
+            }
+        }
 
         // stage('Env print choiceExample') {
         //     steps {
