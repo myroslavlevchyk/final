@@ -57,21 +57,44 @@ pipeline {
         }
 
 
-        stage('VM1: <Ansiblefile#2>'){
-            steps{
-                sh '''                 
-                cd /home/myroslav/final_task/final/
-                ansible-playbook playbook2.yml
-                echo "PRINT Ansible#2>>>"
-                '''             
-            }
-        }
+        // stage('VM1: <Ansiblefile#2>'){
+        //     steps{
+        //         sh '''                 
+        //         cd /home/myroslav/final_task/final/
+        //         ansible-playbook playbook2.yml
+        //         echo "PRINT Ansible#2>>>"
+        //         '''             
+        //     }
+        // }
 
         stage('Env WWW') {
             steps {
                 sh 'cd /home/myroslav/final_task/final2'
                 echo "choiceExample: ${params.choiceExample}"                
                 echo "petclinic: ${params.petclinic}"                
+            }
+        }
+
+
+        stage('Change') {
+            steps {
+                script {
+                    if (params.choiceExample == 'Deploy') 
+                        {
+                        echo 'Hello from Deploy'
+                        }
+                    if (params.choiceExample == 'Update') 
+                        {
+                        echo 'Hello from Update'
+                        }
+                    if (params.choiceExample == 'Delete') 
+                        {
+                        echo 'Hello from Update'
+                        }
+                    else {
+                        sh "echo 'Hello from Nothing'"
+                        }
+                    }
             }
         }
 
