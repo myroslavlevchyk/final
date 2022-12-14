@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        PATH="/home/myroslav/final_task/final"        
+        PATH = "$PATH:/home/myroslav/final_task/final"        
    }    
 
     parameters {
@@ -25,8 +25,8 @@ pipeline {
         stage('Env PWD') {
             steps {
                 sh 'pwd'
-                // sh 'ls -la'
-                // echo "PATH=$PATH" 
+                sh 'ls -la'
+                echo "PATH=$PATH" 
             }
         }
 
