@@ -25,7 +25,7 @@
        command: echo "{{ DOCKER_CHOSE }}"
 
      - name: Docker IMAGE = ("{{ DOCKER_CHOSE }}")
-       command: cd /tmp/ && aa.sh {{ DOCKER_CHOSE }}
+       command: chdir=/tmp ./aa.sh {{ DOCKER_CHOSE }}
 
     #  - name: Docker Image = ("{{ DOCKER_IMAGE }}") Docker container image
     #    shell: pwd && /tmp/aa.sh "{{ DOCKER_IMAGE }}"
