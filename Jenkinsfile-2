@@ -62,7 +62,7 @@ pipeline {
                 sh '''                 
                 cd /home/myroslav/final_task/final/
                 pwd
-                ansible-playbook playbook3.yml --extra-vars "DOCKER_IMAGE=petclinic"
+                ansible-playbook playbook3.yml --extra-vars "DOCKER_IMAGE=${params.petclinic}"
                 pwd
                 echo "PRINT Ansible#2>>>"
                 '''             
