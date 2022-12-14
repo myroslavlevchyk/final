@@ -35,6 +35,7 @@ pipeline {
             steps {
                 sh 'cd /home/myroslav/final_task/final'
                 echo "choiceExample: ${params.choiceExample}"                
+                echo "myroslavlevchyk/petclinic: ${params.myroslavlevchyk/petclinic}"                
             }
         }
 
