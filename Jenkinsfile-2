@@ -57,23 +57,23 @@ pipeline {
         }
 
 
-        stage('VM1: <Ansiblefile#2>'){
-            steps{
-                // sh 'cd /home/myroslav/final_task/final'
-                // sh 'pwd'
-                // sh 'cd /home/myroslav/final_task/final && ansible-playbook playbook3.yml --extra-vars "DOCKER_IMAGE=${params.petclinic}"'
-                // // pwd
-                // ansible-playbook playbook3.yml --extra-vars "DOCKER_IMAGE=params.petclinic"
-                // echo "PRINT Ansible#2>>>"                  
-                sh '''                 
-                cd /home/myroslav/final_task/final/
-                pwd
-                ansible-playbook playbook3.yml 
-                pwd
-                echo "PRINT Ansible#2>>>"
-                '''             
-            }
-        }
+        // stage('VM1: <Ansiblefile#2>'){
+        //     steps{
+        //         // sh 'cd /home/myroslav/final_task/final'
+        //         // sh 'pwd'
+        //         // sh 'cd /home/myroslav/final_task/final && ansible-playbook playbook3.yml --extra-vars "DOCKER_IMAGE=${params.petclinic}"'
+        //         // // pwd
+        //         // ansible-playbook playbook3.yml --extra-vars "DOCKER_IMAGE=params.petclinic"
+        //         // echo "PRINT Ansible#2>>>"                  
+        //         sh '''                 
+        //         cd /home/myroslav/final_task/final/
+        //         pwd
+        //         ansible-playbook playbook3.yml 
+        //         pwd
+        //         echo "PRINT Ansible#2>>>"
+        //         '''             
+        //     }
+        // }
 
         stage('Env FINAL2') {
             steps {
@@ -116,11 +116,10 @@ pipeline {
                         echo 'Hello from Nothing'
                         }
                     }
-
-                    else {
-                        echo 'Hello from Nothing'
-                        }
-                    }
+                    // else {
+                    //     echo 'Hello from Nothing'
+                    //     }
+                    // }
                     // if (params.choiceServise == 'Deploy environment') 
                     //     {
                     //     echo 'Hello from Deploy'
