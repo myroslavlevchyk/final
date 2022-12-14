@@ -67,13 +67,6 @@ pipeline {
             }
         }
 
-        stage('Env QQQ') {
-            steps {
-                sh 'cd /home/myroslav/final_task/final2'
-                echo "choiceExample: ${params.choiceExample}"                
-                echo "petclinic: ${params.petclinic}"                
-            }
-        }
 
         // stage('Env print choiceExample') {
         //     steps {
