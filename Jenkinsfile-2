@@ -69,7 +69,7 @@ pipeline {
 
         stage('Env WWW') {
             steps {
-#                sh 'cd /home/myroslav/final_task/final2'
+//                sh 'cd /home/myroslav/final_task/final2'
                 echo "choiceExample: ${params.choiceExample}"                
                 echo "petclinic: ${params.petclinic}"                
             }
