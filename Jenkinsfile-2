@@ -61,7 +61,7 @@ pipeline {
             steps{
                 sh 'cd /home/myroslav/final_task/final'
                 sh 'pwd'
-                sh '/home/myroslav/final_task/final/ansible-playbook playbook3.yml --extra-vars "DOCKER_IMAGE=${params.petclinic}"'
+                sh 'cd /home/myroslav/final_task/final && ansible-playbook playbook3.yml --extra-vars "DOCKER_IMAGE=${params.petclinic}"'
                 // pwd
                 echo "PRINT Ansible#2>>>"                  
                 // sh '''                 
