@@ -92,7 +92,7 @@ pipeline {
                         echo 'Hello from Update'
                         }
                     else {
-                        sh "echo 'Hello from Nothing'"
+                        echo 'Hello from Nothing'
                         }
                     }
             }
