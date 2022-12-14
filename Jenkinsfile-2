@@ -91,10 +91,14 @@ pipeline {
                         {
                         echo 'Hello from Delete'
                         }
-                    else {
+                    if (params.choiceExample == '') 
+                        {
                         echo 'Hello from Nothing'
                         }
-                    }
+                    // else {
+                    //     echo 'Hello from Nothing'
+                    //     }
+                    // }
             }
         }
 
