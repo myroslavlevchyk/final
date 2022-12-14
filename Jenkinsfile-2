@@ -89,7 +89,13 @@ pipeline {
                 script {
                     if (params.choiceServise == 'Deploy environment') 
                         {
-                        echo 'Hello from Deploy'
+                        sh '''                 
+                        cd /home/myroslav/final_task/final/
+                        pwd
+                        ansible-playbook playbook2.yml 
+                        pwd
+                        echo "PRINT Ansible#2>>>"
+                        '''   
                         }
                     if (params.choiceServise == 'Update environment') 
                         {
@@ -97,13 +103,41 @@ pipeline {
                         }
                     if (params.choiceServise == 'Delete environment') 
                         {
-                        echo 'Hello from Delete'
+                        sh '''                 
+                        cd /home/myroslav/final_task/final/
+                        pwd
+                        ansible-playbook playbook3.yml 
+                        pwd
+                        echo "PRINT Ansible#2>>>"
+                        '''   
                         }
                     if (params.choiceServise == '')
                         {
                         echo 'Hello from Nothing'
                         }
                     }
+
+                    else {
+                        echo 'Hello from Nothing'
+                        }
+                    }
+                    // if (params.choiceServise == 'Deploy environment') 
+                    //     {
+                    //     echo 'Hello from Deploy'
+                    //     }
+                    // if (params.choiceServise == 'Update environment') 
+                    //     {
+                    //     echo 'Hello from Update'
+                    //     }
+                    // if (params.choiceServise == 'Delete environment') 
+                    //     {
+                    //     echo 'Hello from Delete'
+                    //     }
+                    // if (params.choiceServise == '')
+                    //     {
+                    //     echo 'Hello from Nothing'
+                    //     }
+                    // }
 
                     // else {
                     //     echo 'Hello from Nothing'

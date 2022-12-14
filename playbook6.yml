@@ -1,0 +1,31 @@
+---
+ - name: start services
+   hosts: localhost
+
+   vars:
+       DOCKER_CHOSE: "{{ lookup('env', 'petclinic') }}"
+  #      DOCKER_IMAGE: "{{ 'params.choiceServise' ) }}"
+
+   tasks:
+    #  - name: Delete content in directory
+    #    file:
+    #      state: absent
+    #      path: /home/myroslav/final_task/final2/
+
+    #  - name: Clone Git Repo
+    #    ansible.builtin.git:
+    #      repo: https://github.com/myroslavlevchyk/final.git
+    #      dest: /home/myroslav/final_task/final2
+    #      single_branch: yes
+    #      version: main   
+    #  - name: Docker Image = ("{{ DOCKER_IMAGE }}") Docker container image
+    #    command: echo "{{ DOCKER_IMAGE }}"
+
+     - name: Docker CHOSE = ("{{ DOCKER_CHOSE }}") Docker container image
+       command: echo "{{ DOCKER_CHOSE }}"
+
+     - name: Docker IMAGE = ("{{ DOCKER_CHOSE }}")
+       command: chdir=/tmp ./aa.sh "{{ DOCKER_CHOSE }}"
+
+    #  - name: Docker Image = ("{{ DOCKER_IMAGE }}") Docker container image
+    #    shell: pwd && /tmp/aa.sh "{{ DOCKER_IMAGE }}"

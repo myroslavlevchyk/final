@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: petclinic
+spec:
+  selector:
+    matchLabels:
+      app: petclinic
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: petclinic
+    spec:
+      containers:
+      - name: petclinic
+        image: myroslavlevchyk/petclinic:latest
+#        image: myroslavlevchyk/petclinic:3e5564e8835b72e7861ee20504726a264cc72cf3
+        ports:
+        - containerPort: 8080
+
+
