@@ -89,7 +89,7 @@ pipeline {
                         }
                     if (params.choiceExample == 'Delete') 
                         {
-                        echo 'Hello from Update'
+                        echo 'Hello from Delete'
                         }
                     else {
                         echo 'Hello from Nothing'
