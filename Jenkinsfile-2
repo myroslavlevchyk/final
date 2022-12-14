@@ -25,18 +25,18 @@ pipeline {
             }
         }
 
-    stage('Checkout') {
-            steps {
-              checkout([$class: 'GitSCM', 
-                branches: [[name: '*/main']],
-                extensions: [
-                    [$class: 'SparseCheckoutPaths', 
-                    sparseCheckoutPaths:[[$class:'SparseCheckoutPath', path:'/home/myroslav/final_task/final']]]
-                    ],
-                userRemoteConfigs: [[url: 'https://github.com/myroslavlevchyk/final.git']]])
-              sh "pwd" 
-              sh "ls -ltr"
-          }
+        stage('Checkout') {
+                steps {
+                checkout([$class: 'GitSCM', 
+                    branches: [[name: '*/main']],
+                    extensions: [
+                        [$class: 'SparseCheckoutPaths', 
+                        sparseCheckoutPaths:[[$class:'SparseCheckoutPath', path:'/home/myroslav/final_task/final']]]
+                        ],
+                    userRemoteConfigs: [[url: 'https://github.com/myroslavlevchyk/final.git']]])
+                sh "pwd" 
+                sh "ls -ltr"
+            }
         }
 
         stage('Env PWD') {
