@@ -2,16 +2,16 @@
  - name: start services
    hosts: localhost
 
-   vars:
-       DOCKER_CHOSE: "{{ 'params.petclinic' }}"
-       DOCKER_IMAGE: "{{ 'params.choiceServise' ) }}"
+  #  vars:
+  #      DOCKER_CHOSE: "{{ 'params.petclinic' }}"
+  #      DOCKER_IMAGE: "{{ 'params.choiceServise' ) }}"
 
    tasks:
      - name: Docker Image = ("{{ DOCKER_IMAGE }}") Docker container image
        command: echo "{{ DOCKER_IMAGE }}"
 
-     - name: Docker CHOSE = ("{{ DOCKER_CHOSE }}") Docker container image
-       command: echo "{{ DOCKER_CHOSE }}"
+    #  - name: Docker CHOSE = ("{{ DOCKER_CHOSE }}") Docker container image
+    #    command: echo "{{ DOCKER_CHOSE }}"
 
     #  - name: Docker Image = ("{{ DOCKER_IMAGE }}") Docker container image
     #    command: chdir=/tmp ./aa "{{ DOCKER_IMAGE }}"
