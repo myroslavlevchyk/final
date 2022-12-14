@@ -13,7 +13,7 @@ pipeline {
 //    }    
 
     parameters {
-        choice(choices: '\n\nDeploy environment\nUpdate environment\nDelete environment', description: 'Please select a Service', name: 'choiceExample')
+        choice(choices: '\n\nDeploy environment\nUpdate environment\nDelete environment', description: 'Please select a Service', name: 'choiceServise')
         imageTag(name: 'petclinic', description: 'Please select a DOCKER IMAGE (default = latest)', image: 'myroslavlevchyk/petclinic', defaultTag: 'latest')    
     }
 
@@ -51,7 +51,7 @@ pipeline {
         stage('Env QQQ') {
             steps {
                 sh 'cd /home/myroslav/final_task/final'
-                echo "choiceExample: ${params.choiceExample}"                
+                echo "choiceExample: ${params.choiceServise}"                
                 echo "petclinic: ${params.petclinic}"                
             }
         }
@@ -70,7 +70,7 @@ pipeline {
         stage('Env WWW') {
             steps {
 //                sh 'cd /home/myroslav/final_task/final2'
-                echo "choiceExample: ${params.choiceExample}"                
+                echo "choiceExample: ${params.choiceServise}"                
                 echo "petclinic: ${params.petclinic}"                
             }
         }
@@ -79,19 +79,19 @@ pipeline {
         stage('Change') {
             steps {
                 script {
-                    if (params.choiceExample == 'Deploy environment') 
+                    if (params.choiceServise == 'Deploy environment') 
                         {
                         echo 'Hello from Deploy'
                         }
-                    if (params.choiceExample == 'Update environment') 
+                    if (params.choiceServise == 'Update environment') 
                         {
                         echo 'Hello from Update'
                         }
-                    if (params.choiceExample == 'Delete environment') 
+                    if (params.choiceServise == 'Delete environment') 
                         {
                         echo 'Hello from Delete'
                         }
-                    if (params.choiceExample == '')
+                    if (params.choiceServise == '')
                         {
                         echo 'Hello from Nothing'
                         }
