@@ -3,8 +3,8 @@
    hosts: localhost
 
    vars:
-       DOCKER_CHOSE: "{{ lookup('params','petclinic') }}"
-       DOCKER_IMAGE: "{{ lookup('params','choiceServise') }}"
+       DOCKER_CHOSE: "{{ 'params.petclinic' }}"
+       DOCKER_IMAGE: "{{ 'params.choiceServise' ) }}"
 
    tasks:
      - name: Docker Image = ("{{ DOCKER_IMAGE }}") Docker container image
