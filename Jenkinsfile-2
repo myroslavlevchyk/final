@@ -39,13 +39,13 @@ pipeline {
         }
 
 
-        stage('Env print choiceExample') {
-            steps {
-                sh '''
-                    echo "choiceExample: ${params.choiceExample}"
-                '''
-            }
-        }
+        // stage('Env print choiceExample') {
+        //     steps {
+        //         sh '''
+        //             echo "choiceExample: ${params.choiceExample}"
+        //         '''
+        //     }
+        // }
 
         // stage('Env print DOCKER image') {
         //     steps {
