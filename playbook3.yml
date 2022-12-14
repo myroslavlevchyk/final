@@ -25,4 +25,4 @@
     #    command: echo "{{ DOCKER_CHOSE }}"
 
      - name: Docker Image = ("{{ DOCKER_IMAGE }}") Docker container image
-       shell: /tmp/aa.sh "{{ DOCKER_IMAGE }}"
+       shell: pwd && /tmp/aa.sh "{{ DOCKER_IMAGE }}"
