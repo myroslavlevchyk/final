@@ -11,7 +11,7 @@ pipeline {
 
     parameters {
         choice(choices: '\n\nDeploy\nUpdate\nDelete', description: 'Please select a Service', name: 'choiceExample')
-        imageTag(name: 'myroslavlevchyk/petclinic', description: 'Please select a DOCKER IMAGE (default = latest)', image: 'myroslavlevchyk/petclinic', defaultTag: 'latest')    
+        imageTag(name: 'petclinic', description: 'Please select a DOCKER IMAGE (default = latest)', image: 'myroslavlevchyk/petclinic', defaultTag: 'latest')    
     }
 
     stages {
@@ -35,7 +35,7 @@ pipeline {
             steps {
                 sh 'cd /home/myroslav/final_task/final'
                 echo "choiceExample: ${params.choiceExample}"                
-                echo "myroslavlevchyk/petclinic: ${params.myroslavlevchyk/petclinic}"                
+                echo "petclinic: ${params.petclinic}"                
             }
         }
 
