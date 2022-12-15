@@ -3,8 +3,132 @@
    hosts: localhost
 
    tasks:
+      # - name: Kubectl apply
+      #   # shell: kubectl apply -f /home/myroslav/final_task/final/pod-my-cl-1.yaml     
+      #   shell: chdir=~/final_task/final kubectl apply -f pod-my-cl-1.yaml
+
+      # - name: Create a k8s namespace
+      #   kubernetes.core.k8s:
+      #     name: testing
+      #     api_version: v1
+      #     kind: Namespace
+      #     # state: absent
+      #     state: present
+
+      # - name: Create a Service object from an inline definition
+      #   kubernetes.core.k8s:
+      #     state: present
+      #     definition:
+      #       apiVersion: apps/v1
+      #       kind: Deployment
+      #       metadata:
+      #         labels:
+      #           app: petclinic
+      #         name: petclinic
+      #         namespace: testing
+      #       spec:
+      #         replicas: 2
+      #         selector:
+      #           matchLabels:
+      #             app: petclinic
+      #         template:
+      #           metadata:
+      #             labels:
+      #               app: petclinic
+      #           spec:
+      #             containers:
+      #             - image: myroslavlevchyk/petclinic:latest
+      #               # imagePullPolicy: Always
+      #               name: petclinic
+      #               ports:
+      #               - containerPort: 8080
+
+
+      # - name: Create a Deployment by reading the definition from a local file
+      #   kubernetes.core.k8s:
+      #     state: present
+      #     src: /home/myroslav/final_task/final/pod-my-cl-1.yaml
+
+      # - name: Create a k8s namespace
+      #   kubernetes.core.k8s:
+      #     name: testing
+      #     api_version: v1
+      #     kind: Namespace
+      #     state: absent
+      #     # state: present
+
+      # - name: Create a Service object from an inline definition
+      #   kubernetes.core.k8s:
+      #     state: present
+      #     definition:
+      #       apiVersion: apps/v1
+      #       kind: Deployment
+      #       metadata:
+      #         name: petclinic
+      #         namespace: testing
+      #       spec:
+      #         selector:
+      #           matchLabels:
+      #             app: petclinic
+      #         replicas: 2 # tells deployment to run 2 pods matching the template
+      #         template:
+      #           metadata:
+      #             labels:
+      #               app: petclinic
+      #           spec:
+      #             containers:
+      #             - name: petclinic
+      #               image: myroslavlevchyk/petclinic:latest
+      #       #        image: myroslavlevchyk/petclinic:3e5564e8835b72e7861ee20504726a264cc72cf3
+      #               ports:
+      #               - containerPort: 8080
+
+
+
+
+            # apiVersion: v1
+            # kind: Deployment
+            # metadata:
+            #   name: petclinic
+            #   namespace: testing
+            #   labels:
+            #     app: petclinic
+            #     # service: web
+            # spec:
+            #   containers:
+            #   - name: petclinic
+            #     image: myroslavlevchyk/petclinic:latest
+            #   ports:
+            #   - containerPort: 8080
+
+
+
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: petclinic
+# spec:
+#   selector:
+#     matchLabels:
+#       app: petclinic
+#   replicas: 2 # tells deployment to run 2 pods matching the template
+#   template:
+#     metadata:
+#       labels:
+#         app: petclinic
+#     spec:
+#       containers:
+#       - name: petclinic
+#         image: myroslavlevchyk/petclinic:latest
+# #        image: myroslavlevchyk/petclinic:3e5564e8835b72e7861ee20504726a264cc72cf3
+#         ports:
+#         - containerPort: 8080
+
+
+
      - name: Kubectl apply
-       shell: chdir=~/final_task/final kubectl apply -f pod-my-cl-1.yaml
+       shell: kubectl apply -f /home/myroslav/final_task/final/pod-my-cl-1.yaml     
+      #  shell: chdir=~/final_task/final kubectl apply -f pod-my-cl-1.yaml
 
      - name: Kubectl expose deployment petclinic --type=LoadBalancer --port=8080 --target-port=8080
        shell: chdir=~/final_task/final kubectl expose deployment petclinic --type=LoadBalancer --port=8080 --target-port=8080
