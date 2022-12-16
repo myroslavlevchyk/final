@@ -99,12 +99,8 @@ pipeline {
                         }
                     if (params.choiceServise == 'Update environment') 
                         {
-                        sh '''
-                        pwd                                         
+                        sh '''                        
                         ansible-playbook playbook3.yml                        
-                        pwd
-                        cd                                                                             
-                        pwd
                         echo "PRINT Ansible#3>>> UPDATE"
                         ''' 
                         }
