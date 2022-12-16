@@ -99,8 +99,10 @@ pipeline {
                         }
                     if (params.choiceServise == 'Update environment') 
                         {
-                        sh '''                 
-                        cd /home/myroslav && kubectl apply -f /home/myroslav/final_task/final/pod-my-cl-1.yaml
+                        sh '''
+                        pwd                 
+                        cd /home/myroslav 
+                        kubectl apply -f /home/myroslav/final_task/final/pod-my-cl-1.yaml
                         pwd
                         cd                                                                             
                         pwd
