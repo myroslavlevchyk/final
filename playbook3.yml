@@ -75,11 +75,17 @@
                   targetPort: 8080
               type: LoadBalancer
 
-      - name: get cluster service 
-        shell: kubectl get service --all-namespaces
-        register: service
+      - name: Change the working directory to somedir/ before executing the command
+        ansible.builtin.shell: aa.sh
+        args:
+          chdir: /tmp/
 
-      - debug: var=service
+
+      # - name: get cluster service 
+      #   shell: kubectl get service --all-namespaces
+      #   register: service
+
+      # - debug: var=service
 
 
       # - name: Print Kubectl get service --all-namespaces
