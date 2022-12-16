@@ -26,7 +26,7 @@
           # state: absent
           state: present
 
-      - name: Create a Service object from an inline definition
+      - name: Create a Service object
         kubernetes.core.k8s:
           state: present
           # state: absent
