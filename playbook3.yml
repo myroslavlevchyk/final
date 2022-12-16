@@ -29,8 +29,8 @@
           state: absent
           api_version: v1
           kind: Deployment
-          namespace: 4petclinic
-          name: web
+          namespace: testing
+          name: petclinic
 
       - name: Create a k8s namespace
         kubernetes.core.k8s:
