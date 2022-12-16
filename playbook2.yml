@@ -4,7 +4,7 @@
 
    vars:
        DOCKER_VERSION: "{{ lookup('env', 'petclinic') }}"
-       
+
    tasks:
     #  - name: Kubernetes enable
     #    shell: chdir=~/final_task/final/k8s gcloud services enable container.googleapis.com
@@ -37,7 +37,7 @@
               labels:
                 app: petclinic
               name: petclinic
-              namespace: testing
+              namespace: 4petclinic
             spec:
               replicas: 2
               selector:
@@ -65,7 +65,7 @@
             kind: Service
             metadata:
               name: petclinic
-              namespace: testing
+              namespace: 4petclinic
             spec:
               selector:
                 app: petclinic
