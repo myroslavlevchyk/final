@@ -76,7 +76,7 @@
               type: LoadBalancer
 
       - name: get cluster service 
-        shell: "kubectl get service --all-namespaces | awk '{ print $5}' | tail -n1"
+        shell: kubectl get service --all-namespaces
         register: service
 
       - debug: var=service
