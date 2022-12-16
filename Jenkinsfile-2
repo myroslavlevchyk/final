@@ -101,7 +101,7 @@ pipeline {
                         {
                         sh '''
                         pwd                                         
-                        kubectl apply -f /home/myroslav/workspace/final/pod-my-cl-1.yaml
+                        ansible-playbook playbook3.yml                        
                         pwd
                         cd                                                                             
                         pwd
