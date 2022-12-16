@@ -3,6 +3,9 @@
    gather_facts: no
    hosts: localhost
 
+   vars:
+       DOCKER_VERSION: "{{ lookup('env', 'petclinic') }}"
+
    tasks:
       # - name: Create a k8s namespace
       #   kubernetes.core.k8s:
@@ -51,7 +54,8 @@
                     app: petclinic
                 spec:
                   containers:
-                  - image: myroslavlevchyk/petclinic:latest
+                  - image: "{{ DOCKER_VERSION }}"
+                  # - image: myroslavlevchyk/petclinic:latest
                     # imagePullPolicy: Always
                     name: petclinic
                     ports:

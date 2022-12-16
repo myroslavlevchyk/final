@@ -3,7 +3,7 @@
    hosts: localhost
 
    vars:
-       DOCKER_CHOSE: "{{ lookup('env', 'petclinic') }}"
+       DOCKER_CHOOSE: "{{ lookup('env', 'petclinic') }}"
   #      DOCKER_IMAGE: "{{ 'params.choiceServise' ) }}"
 
    tasks:
