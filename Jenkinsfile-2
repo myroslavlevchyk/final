@@ -100,7 +100,8 @@ pipeline {
                     if (params.choiceServise == 'Update environment') 
                         {
                         sh '''                        
-                        ansible-playbook playbook3.yml                        
+                        ansible-playbook playbook3.yml 
+                        kubectl get service --all-namespaces                       
                         echo "PRINT Ansible#3>>> UPDATE"
                         ''' 
                         }
@@ -109,7 +110,7 @@ pipeline {
                         sh '''                 
                         cd /home/myroslav/final_task/final/
                         pwd
-                        ansible-playbook playbook4.yml 
+                        ansible-playbook playbook4.yml                         
                         pwd
                         echo "PRINT Ansible#4>>> DELETE"
                         '''   
