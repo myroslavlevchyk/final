@@ -101,8 +101,8 @@ pipeline {
                         {
                         sh '''
                         pwd                 
-                        cd /home/myroslav 
-                        kubectl apply -f /home/myroslav/final_task/final/pod-my-cl-1.yaml
+                        cd /home/myroslav/final_task/final/
+                        kubectl apply -f pod-my-cl-1.yaml
                         pwd
                         cd                                                                             
                         pwd
