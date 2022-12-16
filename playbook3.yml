@@ -29,16 +29,16 @@
           state: absent
           api_version: v1
           kind: Deployment
-          namespace: testing
+          namespace: 4petclinic
           name: web
 
-      # - name: Create a k8s namespace
-      #   kubernetes.core.k8s:
-      #     name: testing
-      #     api_version: v1
-      #     kind: Namespace
-      #     # state: absent
-      #     state: present
+      - name: Create a k8s namespace
+        kubernetes.core.k8s:
+          name: 4testing
+          api_version: v1
+          kind: Namespace
+          # state: absent
+          state: present
 
       - name: Create a Service object from an inline definition
         kubernetes.core.k8s:
@@ -51,7 +51,7 @@
               labels:
                 app: petclinic
               name: petclinic
-              namespace: testing
+              namespace: 4testing
             spec:
               replicas: 2
               selector:
