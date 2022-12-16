@@ -6,14 +6,72 @@
     #  - name: Kubernetes enable
     #    shell: chdir=~/final_task/final/k8s gcloud services enable container.googleapis.com
 
-     - name: Terraform Create the infrastructure (init)
-       command: chdir=~/final_task/final/k8s terraform init
+      - name: Terraform Create the infrastructure (init)
+        command: chdir=~/final_task/final/k8s terraform init
 
-     - name: Terraform Create the infrastructure (apply)
-       shell: chdir=~/final_task/final/k8s terraform apply -auto-approve
+      - name: Terraform Create the infrastructure (apply)
+        shell: chdir=~/final_task/final/k8s terraform apply -auto-approve
 
-     - name: Gcloud container clusters get-credentials
-       shell: chdir=~/final_task/final/k8s gcloud container clusters get-credentials $(terraform output -raw kubernetes_cluster_name) --region $(terraform output -raw region)
+      - name: Gcloud container clusters get-credentials
+        shell: chdir=~/final_task/final/k8s gcloud container clusters get-credentials $(terraform output -raw kubernetes_cluster_name) --region $(terraform output -raw region)
+
+      - name: Create a k8s namespace
+        kubernetes.core.k8s:
+          name: testing
+          api_version: v1
+          kind: Namespace
+          # state: absent
+          state: present
+
+      - name: Create a Service object from an inline definition
+        kubernetes.core.k8s:
+          state: present
+          # state: absent
+          definition:
+            apiVersion: apps/v1
+            kind: Deployment
+            metadata:
+              labels:
+                app: petclinic
+              name: petclinic
+              namespace: testing
+            spec:
+              replicas: 2
+              selector:
+                matchLabels:
+                  app: petclinic
+              template:
+                metadata:
+                  labels:
+                    app: petclinic
+                spec:
+                  containers:
+                  - image: "{{ DOCKER_VERSION }}"
+                  # - image: myroslavlevchyk/petclinic:latest
+                    # imagePullPolicy: Always
+                    name: petclinic
+                    ports:
+                    - containerPort: 8080
+
+      - name: Create a LoadBalancer
+        kubernetes.core.k8s:
+          state: present
+          # state: absent
+          definition:
+            apiVersion: v1
+            kind: Service
+            metadata:
+              name: petclinic
+              namespace: testing
+            spec:
+              selector:
+                app: petclinic
+              ports:
+                - port: 8080
+                  targetPort: 8080
+              type: LoadBalancer
+
+
 
     #  - name: Kubectl apply
     #    shell: chdir=~/final_task/final kubectl apply -f pod-my-cl-1.yaml
