@@ -176,8 +176,8 @@
 
 
 
-     - name: Kubectl apply
-       shell: chdir=/home/myroslav kubectl apply -f /home/myroslav/final_task/final/pod-my-cl-1.yaml     
+    #  - name: Kubectl apply
+    #    shell: chdir=/home/myroslav kubectl apply -f /home/myroslav/final_task/final/pod-my-cl-1.yaml     
       #  shell: chdir=~/final_task/final kubectl apply -f pod-my-cl-1.yaml
 
     #  - name: Kubectl expose deployment petclinic --type=LoadBalancer --port=8080 --target-port=8080
