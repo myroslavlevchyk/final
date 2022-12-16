@@ -23,6 +23,15 @@
       #   # shell: kubectl apply -f /home/myroslav/final_task/final/pod-my-cl-1.yaml     
       #   command: chdir=/home/myroslav/final_task/final kubectl apply -f pod-my-cl-1.yaml
 
+
+      - name: Remove an existing Service object
+        kubernetes.core.k8s:
+          state: absent
+          api_version: v1
+          kind: Deployment
+          namespace: testing
+          name: web
+
       - name: Create a k8s namespace
         kubernetes.core.k8s:
           name: testing
@@ -78,6 +87,7 @@
                 - port: 8080
                   targetPort: 8080
               type: LoadBalancer
+
 
       # - name: Run script
       #   command: sh /tmp/aa.sh
