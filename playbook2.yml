@@ -2,6 +2,9 @@
  - name: start services
    hosts: localhost
 
+   vars:
+       DOCKER_VERSION: "{{ lookup('env', 'petclinic') }}"
+       
    tasks:
     #  - name: Kubernetes enable
     #    shell: chdir=~/final_task/final/k8s gcloud services enable container.googleapis.com
@@ -17,7 +20,7 @@
 
       - name: Create a k8s namespace
         kubernetes.core.k8s:
-          name: testing
+          name: 4petclinic
           api_version: v1
           kind: Namespace
           # state: absent
