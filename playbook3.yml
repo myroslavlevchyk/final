@@ -72,7 +72,12 @@
 
       - name: Kubectl apply
         # shell: kubectl apply -f /home/myroslav/final_task/final/pod-my-cl-1.yaml     
-        command: chdir=/home/myroslav/final_task/final kubectl apply -f pod-my-cl-1.yaml
+        command: pwd
+
+
+      # - name: Kubectl apply
+      #   # shell: kubectl apply -f /home/myroslav/final_task/final/pod-my-cl-1.yaml     
+      #   command: chdir=/home/myroslav/final_task/final kubectl apply -f pod-my-cl-1.yaml
 
       # - name: Create a Service object from an inline definition
       #   kubernetes.core.k8s:
