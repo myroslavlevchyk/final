@@ -14,7 +14,7 @@ pipeline {
 
     parameters {
         choice(choices: '\n\nDeploy environment\nUpdate environment\nDelete environment', description: 'Please select a Service', name: 'choiceServise')
-        imageTag(name: 'petclinic', description: 'Please select a DOCKER IMAGE (default = latest)', image: 'myroslavlevchyk/petclinic', defaultTag: 'latest')    
+        imageTag(name: 'petclinic', description: 'Please select a DOCKER IMAGE Version (default = latest)', image: 'myroslavlevchyk/petclinic', defaultTag: 'latest')    
     }
 
     stages {
