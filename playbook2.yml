@@ -4,7 +4,7 @@
 
    tasks:
      - name: Kubernetes enable
-       shell: gcloud services enable container.googleapis.com
+       shell: chdir=~/final_task/final/k8s gcloud services enable container.googleapis.com
 
      - name: Terraform Create the infrastructure (init)
        command: chdir=~/final_task/final/k8s terraform init
