@@ -100,8 +100,7 @@ pipeline {
                     if (params.choiceServise == 'Update environment') 
                         {
                         sh '''                        
-                        ansible-playbook playbook3.yml 
-                        kubectl get service --all-namespaces                       
+                        ansible-playbook playbook3.yml                                               
                         echo "PRINT Ansible#3>>> UPDATE"
                         ''' 
                         }

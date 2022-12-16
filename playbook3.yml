@@ -75,6 +75,13 @@
                   targetPort: 8080
               type: LoadBalancer
 
+      - name: get cluster service 
+        shell: "kubectl get service --all-namespaces | awk '{ print $5}' | tail -n1"
+        register: service
+
+      - debug: var=service
+
+
       # - name: Print Kubectl get service --all-namespaces
       #   shell: kubectl get service --all-namespaces
       #   register: playbook_path_output
