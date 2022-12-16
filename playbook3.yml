@@ -70,23 +70,23 @@
                     ports:
                     - containerPort: 8080
 
-      # - name: Create a LoadBalancer
-      #   kubernetes.core.k8s:
-      #     state: present
-      #     # state: absent
-      #     definition:
-      #       apiVersion: v1
-      #       kind: Service
-      #       metadata:
-      #         name: petclinic
-      #         namespace: testing
-      #       spec:
-      #         selector:
-      #           app: petclinic
-      #         ports:
-      #           - port: 8080
-      #             targetPort: 8080
-      #         type: LoadBalancer
+      - name: Create a LoadBalancer
+        kubernetes.core.k8s:
+          state: present
+          # state: absent
+          definition:
+            apiVersion: v1
+            kind: Service
+            metadata:
+              name: petclinic
+              namespace: 4petclinic
+            spec:
+              selector:
+                app: petclinic
+              ports:
+                - port: 8080
+                  targetPort: 8080
+              type: LoadBalancer
 
 
       # - name: Run script
