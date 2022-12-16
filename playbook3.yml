@@ -51,7 +51,7 @@
               labels:
                 app: petclinic
               name: petclinic
-              namespace: 4testing
+              namespace: 4petclinic
             spec:
               replicas: 2
               selector:
