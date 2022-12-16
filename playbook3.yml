@@ -1,7 +1,7 @@
 ---
  - name: update services
    gather_facts: no
-  #  hosts: localhost
+   hosts: localhost
 
    vars:
        DOCKER_VERSION: "{{ lookup('env', 'petclinic') }}"
