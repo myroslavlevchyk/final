@@ -75,10 +75,8 @@
                   targetPort: 8080
               type: LoadBalancer
 
-      - name: Change the working directory to somedir/ before executing the command
-        ansible.builtin.shell: aa.sh
-        args:
-          chdir: /tmp/
+      - name: Run script
+        command: sh /tmp/aa.sh
 
 
       # - name: get cluster service 
