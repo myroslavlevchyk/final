@@ -1,4 +1,4 @@
-// String gitCredentials = "github-passwd"
+/// String gitCredentials = "github-passwd"
 // String repoUrl = "https://github.com/myroslavlevchyk/final.git"
 
 pipeline {
