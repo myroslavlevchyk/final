@@ -1,47 +1,60 @@
 ---
  - name: start services
+   gather_facts: no
    hosts: localhost
 
    tasks:
+      # - name: Create a k8s namespace
+      #   kubernetes.core.k8s:
+      #     name: testing
+      #     api_version: v1
+      #     kind: Namespace
+      #     state: present
+
+      # - name: Kubectl apply
+      #   kubernetes.core.k8s:
+      #     name: testing
+      #     state: present
+      #     src: /home/myroslav/final_task/final/pod-my-cl-1.yaml
       # - name: Kubectl apply
       #   # shell: kubectl apply -f /home/myroslav/final_task/final/pod-my-cl-1.yaml     
-      #   shell: chdir=~/final_task/final kubectl apply -f pod-my-cl-1.yaml
+      #   command: chdir=/home/myroslav/final_task/final kubectl apply -f pod-my-cl-1.yaml
 
-      - name: Create a k8s namespace
-        kubernetes.core.k8s:
-          name: testing
-          api_version: v1
-          kind: Namespace
-          # state: absent
-          state: present
+      # - name: Create a k8s namespace
+      #   kubernetes.core.k8s:
+      #     name: testing
+      #     api_version: v1
+      #     kind: Namespace
+      #     # state: absent
+      #     state: present
 
-      - name: Create a Service object from an inline definition
-        kubernetes.core.k8s:
-          state: present
-          definition:
-            apiVersion: apps/v1
-            kind: Deployment
-            metadata:
-              labels:
-                app: petclinic
-              name: petclinic
-              namespace: testing
-            spec:
-              replicas: 2
-              selector:
-                matchLabels:
-                  app: petclinic
-              template:
-                metadata:
-                  labels:
-                    app: petclinic
-                spec:
-                  containers:
-                  - image: myroslavlevchyk/petclinic:latest
-                    # imagePullPolicy: Always
-                    name: petclinic
-                    ports:
-                    - containerPort: 8080
+      # - name: Create a Service object from an inline definition
+      #   kubernetes.core.k8s:
+      #     state: present
+      #     definition:
+      #       apiVersion: apps/v1
+      #       kind: Deployment
+      #       metadata:
+      #         labels:
+      #           app: petclinic
+      #         name: petclinic
+      #         namespace: testing
+      #       spec:
+      #         replicas: 2
+      #         selector:
+      #           matchLabels:
+      #             app: petclinic
+      #         template:
+      #           metadata:
+      #             labels:
+      #               app: petclinic
+      #           spec:
+      #             containers:
+      #             - image: myroslavlevchyk/petclinic:latest
+      #               # imagePullPolicy: Always
+      #               name: petclinic
+      #               ports:
+      #               - containerPort: 8080
 
 
       # - name: Create a Deployment by reading the definition from a local file
@@ -54,18 +67,23 @@
       #     name: testing
       #     api_version: v1
       #     kind: Namespace
-      #     state: absent
-      #     # state: present
+      #     # state: absent
+      #     state: present
+
+      # - name: Kubectl apply
+      #   # shell: kubectl apply -f /home/myroslav/final_task/final/pod-my-cl-1.yaml     
+      #   command: chdir=/home/myroslav/final_task/final kubectl delete -f pod-my-cl-1.yaml
 
       # - name: Create a Service object from an inline definition
       #   kubernetes.core.k8s:
+      #     # state: absent           
       #     state: present
       #     definition:
       #       apiVersion: apps/v1
       #       kind: Deployment
       #       metadata:
       #         name: petclinic
-      #         namespace: testing
+      #         # namespace: testing
       #       spec:
       #         selector:
       #           matchLabels:
@@ -83,6 +101,38 @@
       #               ports:
       #               - containerPort: 8080
 
+      # - name: Create a Service object from an inline definition
+      #   kubernetes.core.k8s:
+      #     # state: present
+      #     state: absent
+      #     definition:
+      #       apiVersion: apps/v1
+      #       kind: Deployment
+      #       metadata:
+      #         labels:
+      #           app: petclinic
+      #         name: petclinic
+      #         namespace: testing
+      #       spec:
+      #         replicas: 2
+      #         selector:
+      #           matchLabels:
+      #             app: petclinic
+      #         template:
+      #           metadata:
+      #             labels:
+      #               app: petclinic
+      #           spec:
+      #             containers:
+      #             - image: myroslavlevchyk/petclinic:latest
+      #               # imagePullPolicy: Always
+      #               name: petclinic
+      #               ports:
+      #               - containerPort: 8080
+
+
+      # - name: Kubectl expose deployment petclinic --type=LoadBalancer --port=8080 --target-port=8080
+      #   shell: chdir=~/final_task/final kubectl expose deployment petclinic --type=LoadBalancer --port=8080 --target-port=8080
 
 
 
@@ -126,9 +176,9 @@
 
 
 
-    #  - name: Kubectl apply
-    #    shell: kubectl apply -f /home/myroslav/final_task/final/pod-my-cl-1.yaml     
-    #   #  shell: chdir=~/final_task/final kubectl apply -f pod-my-cl-1.yaml
+     - name: Kubectl apply
+       shell: chdir=/home/myroslav kubectl apply -f /home/myroslav/final_task/final/pod-my-cl-1.yaml     
+      #  shell: chdir=~/final_task/final kubectl apply -f pod-my-cl-1.yaml
 
     #  - name: Kubectl expose deployment petclinic --type=LoadBalancer --port=8080 --target-port=8080
     #    shell: chdir=~/final_task/final kubectl expose deployment petclinic --type=LoadBalancer --port=8080 --target-port=8080
