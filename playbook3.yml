@@ -75,10 +75,10 @@
                   targetPort: 8080
               type: LoadBalancer
 
-     - name: Print Kubectl get service --all-namespaces
-       shell: kubectl get service --all-namespaces
-       register: playbook_path_output
-     - debug: var=playbook_path_output.stdout
+      - name: Print Kubectl get service --all-namespaces
+        shell: kubectl get service --all-namespaces
+        register: playbook_path_output
+      - debug: var=playbook_path_output.stdout
 
 
 
