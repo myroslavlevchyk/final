@@ -102,7 +102,7 @@ pipeline {
                         sh '''                 
                         cd /home/myroslav/final_task/final/
                         pwd
-                        kubectl apply -f pod-my-cl-1.yaml                        
+                        ansible-playbook playbook3.yml 
                         pwd
                         echo "PRINT Ansible#3>>> UPDATE"
                         ''' 

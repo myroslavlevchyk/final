@@ -7,41 +7,41 @@
       #   # shell: kubectl apply -f /home/myroslav/final_task/final/pod-my-cl-1.yaml     
       #   shell: chdir=~/final_task/final kubectl apply -f pod-my-cl-1.yaml
 
-      # - name: Create a k8s namespace
-      #   kubernetes.core.k8s:
-      #     name: testing
-      #     api_version: v1
-      #     kind: Namespace
-      #     # state: absent
-      #     state: present
+      - name: Create a k8s namespace
+        kubernetes.core.k8s:
+          name: testing
+          api_version: v1
+          kind: Namespace
+          # state: absent
+          state: present
 
-      # - name: Create a Service object from an inline definition
-      #   kubernetes.core.k8s:
-      #     state: present
-      #     definition:
-      #       apiVersion: apps/v1
-      #       kind: Deployment
-      #       metadata:
-      #         labels:
-      #           app: petclinic
-      #         name: petclinic
-      #         namespace: testing
-      #       spec:
-      #         replicas: 2
-      #         selector:
-      #           matchLabels:
-      #             app: petclinic
-      #         template:
-      #           metadata:
-      #             labels:
-      #               app: petclinic
-      #           spec:
-      #             containers:
-      #             - image: myroslavlevchyk/petclinic:latest
-      #               # imagePullPolicy: Always
-      #               name: petclinic
-      #               ports:
-      #               - containerPort: 8080
+      - name: Create a Service object from an inline definition
+        kubernetes.core.k8s:
+          state: present
+          definition:
+            apiVersion: apps/v1
+            kind: Deployment
+            metadata:
+              labels:
+                app: petclinic
+              name: petclinic
+              namespace: testing
+            spec:
+              replicas: 2
+              selector:
+                matchLabels:
+                  app: petclinic
+              template:
+                metadata:
+                  labels:
+                    app: petclinic
+                spec:
+                  containers:
+                  - image: myroslavlevchyk/petclinic:latest
+                    # imagePullPolicy: Always
+                    name: petclinic
+                    ports:
+                    - containerPort: 8080
 
 
       # - name: Create a Deployment by reading the definition from a local file
@@ -126,27 +126,27 @@
 
 
 
-     - name: Kubectl apply
-       shell: kubectl apply -f /home/myroslav/final_task/final/pod-my-cl-1.yaml     
-      #  shell: chdir=~/final_task/final kubectl apply -f pod-my-cl-1.yaml
+    #  - name: Kubectl apply
+    #    shell: kubectl apply -f /home/myroslav/final_task/final/pod-my-cl-1.yaml     
+    #   #  shell: chdir=~/final_task/final kubectl apply -f pod-my-cl-1.yaml
 
-     - name: Kubectl expose deployment petclinic --type=LoadBalancer --port=8080 --target-port=8080
-       shell: chdir=~/final_task/final kubectl expose deployment petclinic --type=LoadBalancer --port=8080 --target-port=8080
+    #  - name: Kubectl expose deployment petclinic --type=LoadBalancer --port=8080 --target-port=8080
+    #    shell: chdir=~/final_task/final kubectl expose deployment petclinic --type=LoadBalancer --port=8080 --target-port=8080
 
-     - name: Sleep 60
-       shell: sleep 60
+    #  - name: Sleep 60
+    #    shell: sleep 60
 
-     - name: Kubectl get svc
-       shell: kubectl get svc
-       register: playbook_path_output
-     - debug: var=playbook_path_output.stdout
+    #  - name: Kubectl get svc
+    #    shell: kubectl get svc
+    #    register: playbook_path_output
+    #  - debug: var=playbook_path_output.stdout
 
-     - name: Print IP
-       shell: echo "IP " && kubectl get svc | awk '{print $4}'| tail -n1
-       register: playbook_path_output
-     - debug: var=playbook_path_output.stdout
+    #  - name: Print IP
+    #    shell: echo "IP " && kubectl get svc | awk '{print $4}'| tail -n1
+    #    register: playbook_path_output
+    #  - debug: var=playbook_path_output.stdout
 
-     - name: Print Port
-       shell: echo "Port " && kubectl get svc | awk '{print $5}'| tail -n1 | cut -d ":" -f 1
-       register: playbook_path_output
-     - debug: var=playbook_path_output.stdout
+    #  - name: Print Port
+    #    shell: echo "Port " && kubectl get svc | awk '{print $5}'| tail -n1 | cut -d ":" -f 1
+    #    register: playbook_path_output
+    #  - debug: var=playbook_path_output.stdout
