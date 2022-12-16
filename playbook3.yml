@@ -32,13 +32,13 @@
           namespace: testing
           name: web
 
-      - name: Create a k8s namespace
-        kubernetes.core.k8s:
-          name: testing
-          api_version: v1
-          kind: Namespace
-          # state: absent
-          state: present
+      # - name: Create a k8s namespace
+      #   kubernetes.core.k8s:
+      #     name: testing
+      #     api_version: v1
+      #     kind: Namespace
+      #     # state: absent
+      #     state: present
 
       - name: Create a Service object from an inline definition
         kubernetes.core.k8s:
@@ -70,23 +70,23 @@
                     ports:
                     - containerPort: 8080
 
-      - name: Create a LoadBalancer
-        kubernetes.core.k8s:
-          state: present
-          # state: absent
-          definition:
-            apiVersion: v1
-            kind: Service
-            metadata:
-              name: petclinic
-              namespace: testing
-            spec:
-              selector:
-                app: petclinic
-              ports:
-                - port: 8080
-                  targetPort: 8080
-              type: LoadBalancer
+      # - name: Create a LoadBalancer
+      #   kubernetes.core.k8s:
+      #     state: present
+      #     # state: absent
+      #     definition:
+      #       apiVersion: v1
+      #       kind: Service
+      #       metadata:
+      #         name: petclinic
+      #         namespace: testing
+      #       spec:
+      #         selector:
+      #           app: petclinic
+      #         ports:
+      #           - port: 8080
+      #             targetPort: 8080
+      #         type: LoadBalancer
 
 
       # - name: Run script
