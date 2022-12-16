@@ -72,7 +72,7 @@
 
       - name: Kubectl apply
         # shell: kubectl apply -f /home/myroslav/final_task/final/pod-my-cl-1.yaml     
-        command: pwd
+        shell: pwd 
 
 
       # - name: Kubectl apply
