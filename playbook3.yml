@@ -75,8 +75,8 @@
                   targetPort: 8080
               type: LoadBalancer
 
-      - name: Run script
-        command: sh /tmp/aa.sh
+      # - name: Run script
+      #   command: sh /tmp/aa.sh
 
 
       # - name: get cluster service 
